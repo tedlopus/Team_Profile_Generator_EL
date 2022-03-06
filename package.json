@@ -1,0 +1,23 @@
+{
+  "name": "team_profile_generator_el",
+  "version": "1.0.0",
+  "description": "This application allows you to generate profiles for a software engineering team based on the information inputted by the user.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tedlopus/Team_Profile_Generator_EL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tedlopus/Team_Profile_Generator_EL/issues"
+  },
+  "homepage": "https://github.com/tedlopus/Team_Profile_Generator_EL#readme"
+}
