@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/tedlopus/Team_Profile_Generator_EL/issues"
   },
-  "homepage": "https://github.com/tedlopus/Team_Profile_Generator_EL#readme"
+  "homepage": "https://github.com/tedlopus/Team_Profile_Generator_EL#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
 }
