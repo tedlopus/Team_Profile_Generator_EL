@@ -11,7 +11,7 @@ team = [];
 const runGenerator = () => {
 
     const addMember = () => {
-        return inquirer.prompt ([
+        inquirer.prompt ([
             {
                 type: "list",
                 name: "member",
@@ -21,25 +21,25 @@ const runGenerator = () => {
                     "Add Intern",
                     "Exit",
                 ],
-            }.then( choice => {
-                switch (choice.member) {
-                    case "Engineer":
-                        addEngineer();
-                        break;
+            }
+        ]).then( choice => {
+            switch (choice.member) {
+                case "Engineer":
+                    addEngineer();
+                    break;
 
-                    case "Intern":
-                        addIntern();
-                        break;
-                    
-                    default:
-                        exit();
-                }
-            })
-        ])
+                case "Intern":
+                    addIntern();
+                    break;
+                
+                default:
+                    exit();
+            }
+        });
     };
 
     const addEngineer = () => {
-        return inquirer.prompt ([
+        inquirer.prompt ([
             {
                 type: "input",
                 name: "engineerName",
@@ -54,16 +54,16 @@ const runGenerator = () => {
                 type: "input",
                 name: "engineerGithub",
                 message: "Please enter the engineer's GitHub profile name.",
-            }.then( input => {
-                const employee = new Engineer (input.engineerName, input.engineerEmail, input.engineerGithub);
-                team.push(employee);
-                addMember();
-            })
-        ])
+            }
+        ]).then( input => {
+            const employee = new Engineer (input.engineerName, input.engineerEmail, input.engineerGithub);
+            team.push(employee);
+            addMember();
+        });
     };
     
     const addIntern = () => {
-        return inquirer.prompt ([
+        inquirer.prompt ([
             {
                 type: "input",
                 name: "internName",
@@ -78,16 +78,28 @@ const runGenerator = () => {
                 type: "input",
                 name: "internSchool",
                 message: "Please enter the intern's current school.",
-            }.then( input => {
-                const employee = new Intern (input.internName, input.internEmail, input.internSchool);
-                team.push(employee);
-                addMember();
-            })
-        ])
+            }
+        ]).then( input => {
+            const employee = new Intern (input.internName, input.internEmail, input.internSchool);
+            team.push(employee);
+            addMember();
+        });
     };
 
-
-
-
-
+    addMember();
 };
+
+const writeFile = data => {
+    fs.writeFile('index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Generating HTML...")
+        }
+    })
+};
+
+
+
+runGenerator();
