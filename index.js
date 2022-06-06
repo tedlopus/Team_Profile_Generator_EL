@@ -1,44 +1,16 @@
 const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
-const Employee = require("./lib/employee")
+const employeeHTML = require("./src/employee");
+const engineerHTML = require("./src/engineer");
+const internHTML = require("./src/intern");
+const managerHTML = require("./src/manager");
+const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
 team = [];
-
-const generateEngineerHTML = ( engineer, employee ) => {
-  return `<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-        crossorigin="anonymous"
-      />
-      <link rel="stylesheet" type="text/css" href="assets/style.css" />
-      <title>Team Profile Generator</title>
-    </head>
-<body>
-<div class="card" style="width: 18rem">
-<div class="card-body">
-  <h5 class="card-title">John Bell</h5>
-  <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Role:${engineer.getRole()}</li>
-    <li class="list-group-item">Email:${engineer.getemail()}</li>
-    <li class="list-group-item">Github:${engineer.getGithub()}</li>
-  </ul>
-</div>
-</div>
-</body>
-</html>`;
-};
 
 const runGenerator = () => {
   const addMember = () => {
@@ -92,15 +64,17 @@ const runGenerator = () => {
           input.engineerEmail,
           input.engineerGithub
         );
-        team.push(employee).then(
-          fs.writeFile("/dist/team.html", generateEngineerHTML(team), (err) => {
+        team.push(employee)
+        
+        
+          fs.writeFile("team.html", engineerHTML(team), (err) => {
             if (err) {
               console.log(err);
             } else {
               console.log("Successfully opened index.html!");
             }
           })
-        );
+
         addMember();
       });
   };
@@ -131,6 +105,15 @@ const runGenerator = () => {
           input.internSchool
         );
         team.push(employee);
+        
+        fs.writeFile("team.html", engineerHTML(team), (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("Successfully opened index.html!");
+            }
+          });
+
         addMember();
       });
   };
